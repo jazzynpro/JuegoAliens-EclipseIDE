@@ -24,7 +24,7 @@ public class Alien {
 		this.color = color;
 		this.precioCuerpo = tamanio * 0.20;
 		this.precioExtremidad = tamanio * 0.10;
-		this.precioOjo = tamanio * 0.5;
+		this.precioOjo = tamanio * 0.05;
 	}
 //Metodos get para todos los atributos
 
@@ -63,14 +63,14 @@ public class Alien {
 	//Metodo imprimir
 	public void imprimir() {
 		String mensaje= "-------DATOS ALIENS-------" +
-				"Tamaño: " + tamanio +
-				"Color: " + color +
-				"Numero de Ojos: " + numeroOjos +
-				"Numero de Brazos: " + numeroBrazos+
-				"Numero de pies: "+numeroPies+
-				"Precio de Extremidad: "+precioExtremidad+
-				"Precio de ojo: "+precioOjo+
-				"Precio de cuerpo: "+precioCuerpo;
+				" Tamaño:" + tamanio +
+				" Color:" + color +
+				" Numero de Ojos:" + numeroOjos +
+				" Numero de Brazos:" + numeroBrazos+
+				" Numero de pies:"+numeroPies+
+				" Precio de Extremidad:"+precioExtremidad+
+				" Precio de ojo:"+precioOjo+
+				" Precio de cuerpo:"+precioCuerpo;
 		System.out.println(mensaje);
 	}
 }
