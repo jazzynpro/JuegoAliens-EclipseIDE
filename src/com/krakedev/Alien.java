@@ -22,9 +22,9 @@ public class Alien {
 		}
 		// calculo de precios
 		this.color = color;
-		this.precioCuerpo = tamanio * 0.20;
-		this.precioExtremidad = tamanio * 0.10;
-		this.precioOjo = tamanio * 0.05;
+		this.precioCuerpo = this.tamanio * 0.20;
+		this.precioExtremidad = this.tamanio * 0.10;
+		this.precioOjo = this.tamanio * 0.05;
 	}
 //Metodos get para todos los atributos
 
