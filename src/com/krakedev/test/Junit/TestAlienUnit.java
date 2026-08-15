@@ -1,6 +1,8 @@
 package com.krakedev.test.Junit;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -68,5 +70,56 @@ public class TestAlienUnit {
 
 			// Ejecución del método imprimir para cubrir la totalidad de líneas de la clase
 			alienNormal.imprimir();
+		}
+		@Test
+		public void testAgregarBrazosExitoso() {
+			Alien alien = new Alien(10, "Verde"); // totalExtremidades inicial es 0 (<= 10)
+
+			// Evaluamos la rama TRUE del if
+			boolean resultado = alien.agregarBrazos(4);
+
+			assertTrue(resultado);
+			assertEquals(4, alien.getNumeroBrazos());
+		}
+
+		@Test
+		public void testAgregarBrazosFallido() {
+			Alien alien = new Alien(10, "Verde");
+			// Primero sumamos 11 piernas para hacer que totalExtremidades supere 10
+			alien.agregarPiernas(11); 
+
+			// Evaluamos la rama FALSE del if (totalExtremidades es 11 > 10)
+			boolean resultado = alien.agregarBrazos(2);
+
+			assertFalse(resultado);
+			assertEquals(0, alien.getNumeroBrazos()); // Los brazos no debieron cambiar
+		}
+
+		// -----------------------------------------------------
+		// PRUEBAS PARA agregarPiernas
+		// -----------------------------------------------------
+
+		@Test
+		public void testAgregarPiernasExitoso() {
+			Alien alien = new Alien(10, "Azul"); // totalExtremidades inicial es 0 (<= 10)
+
+			// Evaluamos la rama TRUE del if
+			boolean resultado = alien.agregarPiernas(6);
+
+			assertTrue(resultado);
+			assertEquals(6, alien.getNumeroPies());
+		}
+
+		@Test
+		public void testAgregarPiernasFallido() {
+			Alien alien = new Alien(10, "Azul");
+			// Sumamos 11 brazos para exceder el límite permitido
+			alien.agregarBrazos(11); 
+
+			// Evaluamos la rama FALSE del if (totalExtremidades es 11 > 10)
+			boolean resultado = alien.agregarPiernas(2);
+
+			assertFalse(resultado);
+			assertEquals(0, alien.getNumeroPies()); // Las piernas no debieron cambiar
 		}
 }
