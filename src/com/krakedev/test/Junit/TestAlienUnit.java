@@ -136,4 +136,99 @@ public class TestAlienUnit {
 			//assertEquals(7, alien.getPrecioTotal(), 0.0001);
 			
 		}
+		// -----------------------------------------------------
+		// PRUEBAS DE COBERTURA DE RAMAS DE "agregarOjos"
+		// -----------------------------------------------------
+
+		// Rama 1: Tamaño de 5 a 10 (Límite máximo: 3 ojos)
+		@Test
+		public void testAgregarOjosTamanioPequenioExitoso() {
+			Alien alien = new Alien(8, "Verde"); // Rango 5 <= 8 <= 10 -> maximoOjos = 3
+			boolean resultado = alien.agregarOjos(3);
+
+			assertTrue(resultado);
+			assertEquals(3, alien.getNumeroOjos());
+		}
+
+		@Test
+		public void testAgregarOjosTamanioPequenioExcedido() {
+			Alien alien = new Alien(8, "Verde"); // Rango 5 <= 8 <= 10 -> maximoOjos = 3
+			boolean resultado = alien.agregarOjos(4); // Excede el límite de 3
+
+			assertFalse(resultado);
+			assertEquals(0, alien.getNumeroOjos());
+		}
+
+		// Rama 2: Tamaño de 11 a 20 (Límite máximo: 5 ojos)
+		@Test
+		public void testAgregarOjosTamanioMedianoExitoso() {
+			Alien alien = new Alien(15, "Amarillo"); // Rango 10 < 15 <= 20 -> maximoOjos = 5
+			boolean resultado = alien.agregarOjos(5);
+
+			assertTrue(resultado);
+			assertEquals(5, alien.getNumeroOjos());
+		}
+
+		@Test
+		public void testAgregarOjosTamanioMedianoExcedido() {
+			Alien alien = new Alien(15, "Amarillo"); // Rango 10 < 15 <= 20 -> maximoOjos = 5
+			boolean resultado = alien.agregarOjos(6); // Excede el límite de 5
+
+			assertFalse(resultado);
+			assertEquals(0, alien.getNumeroOjos());
+		}
+
+		// Rama 3: Tamaño de 21 a 30 (Límite máximo: 7 ojos)
+		@Test
+		public void testAgregarOjosTamanioGrandeExitoso() {
+			Alien alien = new Alien(25, "Morado"); // Rango 20 < 25 <= 30 -> maximoOjos = 7
+			boolean resultado = alien.agregarOjos(7);
+
+			assertTrue(resultado);
+			assertEquals(7, alien.getNumeroOjos());
+		}
+
+		@Test
+		public void testAgregarOjosTamanioGrandeExcedido() {
+			Alien alien = new Alien(25, "Morado"); // Rango 20 < 25 <= 30 -> maximoOjos = 7
+			boolean resultado = alien.agregarOjos(8); // Excede el límite de 7
+
+			assertFalse(resultado);
+			assertEquals(0, alien.getNumeroOjos());
+		}
+
+		// -----------------------------------------------------
+		// PRUEBAS DE CÁLCULO DE PRECIO TOTAL Y COMPORTAMIENTO
+		// -----------------------------------------------------
+
+		@Test
+		public void testValidarPrecioTotalInicial() {
+			// Tamaño 10 -> Cuerpo: 2.0, Extremidad: 1.0, Ojo: 0.5
+			Alien alien = new Alien(10, "Azul");
+			
+			// Inicialmente sin miembros: Total = 2.0 + (0*1.0) + (0*0.5) = 2.0
+			assertEquals(2.0, alien.getPrecioTotal(), 0.0001);
+		}
+
+		@Test
+		public void testValidarCalculoPrecioTotalConElementos() {
+			// Tamaño 10:
+			// precioCuerpo = 10 * 0.20 = 2.0
+			// precioExtremidad = 10 * 0.10 = 1.0
+			// precioOjo = 10 * 0.05 = 0.5
+			Alien alien = new Alien(10, "Azul");
+
+			// Agregar 2 brazos -> Subtotal extremidades = 2 * 1.0 = 2.0
+			alien.agregarBrazos(2);
+
+			// Agregar 2 piernas -> Subtotal extremidades = (2+2) * 1.0 = 4.0
+			alien.agregarPiernas(2);
+
+			// Agregar 2 ojos -> Subtotal ojos = 2 * 0.5 = 1.0
+			alien.agregarOjos(2);
+
+			// Precio Total esperado = 2.0 (Cuerpo) + 4.0 (Extremidades) + 1.0 (Ojos) = 7.0
+			double precioEsperado = 2.0 + (4 * 1.0) + (2 * 0.5);
+			assertEquals(7.0, alien.getPrecioTotal(), 0.0001);
+		}
 }
