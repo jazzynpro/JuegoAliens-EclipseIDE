@@ -9,7 +9,7 @@ public class Alien {
 	private double precioExtremidad;
 	private double precioOjo;
 	private double precioCuerpo;
-	
+	private double precioTotal;
 //constructor que recibe tamaño y color
 	public Alien (int tamanio, String color) {
 		//validaciones
@@ -25,6 +25,9 @@ public class Alien {
 		this.precioCuerpo = this.tamanio * 0.20;
 		this.precioExtremidad = this.tamanio * 0.10;
 		this.precioOjo = this.tamanio * 0.05;
+		this.precioTotal = 0.0;
+		calcularPrecioTotal();
+		
 	}
 //Metodos get para todos los atributos
 
@@ -60,6 +63,10 @@ public class Alien {
 		return precioCuerpo;
 	}
 	
+	public double getPrecioTotal() {
+		return precioTotal;
+	}
+	
 	//Metodo imprimir
 	public void imprimir() {
 		String mensaje= "-------DATOS ALIENS-------" +
@@ -70,7 +77,8 @@ public class Alien {
 				" Numero de pies:"+numeroPies+
 				" Precio de Extremidad:"+precioExtremidad+
 				" Precio de ojo:"+precioOjo+
-				" Precio de cuerpo:"+precioCuerpo;
+				" Precio de cuerpo:"+precioCuerpo +
+				" Precio Total:"+precioTotal;
 		System.out.println(mensaje);
 	}
 	//Metodo agregarBrazos
@@ -78,6 +86,7 @@ public class Alien {
 		int totalExtremidades = this.numeroBrazos + this.numeroPies;
 		if(totalExtremidades <= 10) {
 			this.numeroBrazos = this.numeroBrazos + cantidadBrazos;
+			calcularPrecioTotal();
 			return true;
 		}else{
 			return false;
@@ -88,6 +97,7 @@ public class Alien {
 		int totalExtremidades = this.numeroBrazos + this.numeroPies;
 		if(totalExtremidades <= 10) {
 			this.numeroPies = this.numeroPies + cantidadPiernas;
+			calcularPrecioTotal();
 			return true;
 		}else{
 			return false;
@@ -105,9 +115,18 @@ public class Alien {
 		}
 		if((numeroOjos + cantidadOjos) <= maximoOjos) {
 			numeroOjos += cantidadOjos;
+			calcularPrecioTotal();
 			return true;
 		}else {
 			return false;
 		}
+	}
+	
+	//metodo calcularPrecioTotal
+	public void calcularPrecioTotal() {
+		int totalExtremidades = this.numeroBrazos+  this.numeroPies;
+		System.out.println(precioCuerpo);
+		this.precioTotal = this.precioCuerpo + (totalExtremidades*this.precioExtremidad) + (this.numeroOjos*this.precioOjo) ;
+		
 	}
 }

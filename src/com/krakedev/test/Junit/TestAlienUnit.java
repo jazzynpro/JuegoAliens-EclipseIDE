@@ -122,4 +122,18 @@ public class TestAlienUnit {
 			assertFalse(resultado);
 			assertEquals(0, alien.getNumeroPies()); // Las piernas no debieron cambiar
 		}
+		
+		@Test
+		public void testValidarPrecioTotal() {
+			
+			Alien alien = new Alien(10, "Azul");
+			
+			assertEquals(2, alien.getPrecioTotal(), 0.0001);
+			//alien.agregarBrazos(2);
+			//alien.agregarPiernas(2);
+			//alien.agregarOjos(2);
+			
+			//assertEquals(7, alien.getPrecioTotal(), 0.0001);
+			
+		}
 }
