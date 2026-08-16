@@ -93,5 +93,21 @@ public class Alien {
 			return false;
 		}
 	}
-	
+	//Parte 8 Metodo agregarOjos
+	public boolean agregarOjos(int cantidadOjos) {
+		int maximoOjos = 0;
+		if(this.tamanio >= 5 && this.tamanio <= 10){
+			maximoOjos = 3;
+		}else if(this.tamanio > 10 && this.tamanio <= 20) {
+			maximoOjos = 5;
+		}else if(this.tamanio > 20 && this.tamanio <= 30) {
+			maximoOjos = 7;
+		}
+		if((numeroOjos + cantidadOjos) <= maximoOjos) {
+			numeroOjos += cantidadOjos;
+			return true;
+		}else {
+			return false;
+		}
+	}
 }
